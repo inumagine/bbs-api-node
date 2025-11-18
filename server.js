@@ -20,6 +20,7 @@ function handleError(res, err) {
   res.status(500).json({ error: 'internal_server_error' });
 }
 
+
 // A: スレ一覧取得
 app.get('/threads', async (req, res) => {
   try {
@@ -141,6 +142,23 @@ app.post('/threads/:id/posts', async (req, res) => {
     handleError(res, err);
   }
 });
+
+
+app.get('/', (req, res) => {
+  res.send(`
+    <h2>BBS API is running 🎉</h2>
+    <p>Welcome to the backend API.</p>
+    <p>主なエンドポイントはこちら：</p>
+    <ul>
+      <li><a href="/threads">GET /threads</a> — スレッド一覧</li>
+      <li>POST /threads — 新規スレッド作成</li>
+      <li>GET /threads/:id — スレッド詳細</li>
+      <li>POST /threads/:id/posts — レス投稿</li>
+    </ul>
+    <p>Powered by Render & Supabase</p>
+  `);
+});
+
 
 // サーバー起動
 const port = process.env.PORT || 3000;

@@ -3,15 +3,34 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
-const cors = require('cors');   //  ブラウザのHTMLから https://bbs-api-node.onrender.com/threads を叩くにはCORS許可 が必要
+//const cors = require('cors');   //  ブラウザのHTMLから https://bbs-api-node.onrender.com/threads を叩くにはCORS許可 が必要
 
 dotenv.config();
 
+
+
 const app = express();
 
-app.use(cors());
+// 自前CORS対応（どこからでもOK）
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+  );
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 app.use(express.json());
+
+
+//app.use(cors());
 
 app.use(express.json());
 

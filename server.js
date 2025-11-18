@@ -3,10 +3,16 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { Pool } = require('pg');
+const cors = require('cors');   //  ブラウザのHTMLから https://bbs-api-node.onrender.com/threads を叩くにはCORS許可 が必要
 
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+
 app.use(express.json());
 
 // デバッグ：環境変数が見えているか確認（true/false だけ）

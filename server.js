@@ -11,7 +11,7 @@ app.use(express.json());
 
 // DB接続プール
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.SUPABASE_DB_URL,
   ssl: {
     rejectUnauthorized: false,
   },

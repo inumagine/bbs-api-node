@@ -12,7 +12,11 @@ app.use(express.json());
 // DB接続プール
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
+
 
 // 共通エラーハンドラ
 function handleError(res, err) {

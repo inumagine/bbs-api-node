@@ -1,0 +1,49 @@
+Connect to your project
+Get the connection strings and environment variables for your app.
+
+Connection String
+App Frameworks
+Mobile Frameworks
+ORMs
+MCP
+Type
+
+URI
+Source
+
+Primary database
+Method
+
+Direct connection
+Learn how to connect to your Postgres databases.
+Read docs
+
+Direct connection
+Ideal for applications with persistent and long-lived connections, such as those running on virtual machines or long-standing containers.
+
+postgresql://postgres:[YOUR_PASSWORD]@db.abilxctvaibfkybaenfl.supabase.co:5432/postgres
+
+
+View parameters
+host:
+db.abilxctvaibfkybaenfl.supabase.co
+
+port:
+5432
+
+database:
+postgres
+
+user:
+postgres
+
+For security reasons, your database password is never shown.
+Not IPv4 compatible
+Use Session Pooler if on a IPv4 network or purchase IPv4 add-on
+IPv4 add-on
+Pooler settings
+
+Some platforms are IPv4-only:
+Reset your database password
+
+You may reset your database password in your project's Database Settings

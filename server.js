@@ -9,6 +9,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+// デバッグ：環境変数が見えているか確認（true/false だけ）
+console.log('SUPABASE_DB_URL exists:', !!process.env.SUPABASE_DB_URL);
+
 // DB接続プール
 const pool = new Pool({
   connectionString: process.env.SUPABASE_DB_URL,
@@ -17,11 +20,14 @@ const pool = new Pool({
   },
 });
 
-
-// 共通エラーハンドラ
+// 共通エラーハンドラ（デバッグ版）
 function handleError(res, err) {
   console.error(err);
-  res.status(500).json({ error: 'internal_server_error' });
+  res.status(500).json({
+    error: 'internal_server_error',
+    message: err.message,   // ★ 一時的に中身も返す
+    code: err.code || null, // ★ pg のエラーコードなど
+  });
 }
 
 
